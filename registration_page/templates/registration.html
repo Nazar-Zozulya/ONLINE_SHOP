@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Сторінка реєстрації
+{% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{{ url_for('reg.static', filename = 'reg.css') }}">
+{% endblock %}
+
+{% block header %}
+    <a href="/auth"><p class="header-p" >AUTHORIZATION</p></a>
+{% endblock %}
+
+{% block content %}
+<div class="main">
+    <form action="" method="post">
+        <div class="field">
+            <p>Login</p>
+            <input type="text" name="name">
+        </div>
+        <div class="field">
+            <p>Email</p>
+            <input type="email" name="email">
+        </div>
+        <div class="field">
+            <p>Password</p>
+            <input type="password" name="password">
+        </div>
+        <div class="field">
+            <p>Password confirmation</p>
+            <input type="password">
+        </div>
+        <button id="openDialog">SEND</button>
+        <dialog style="display: none;">
+            <div class="cover-modal">
+            </div>
+            <div class="modal">
+                <p>Confirmed</p>
+                <a href="/auth"><p upper class="header-p" id="openDialog" >> authorization</p></a>
+            </div>
+        </dialog>
+    </form>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    // відкриваємо модальне вікно
+    var dialog = document.querySelector('.dialog');
+   document.querySelector('#openDialog').onclick = function() {
+    dialog.show(); 
+    dialog.style.display = 'flex';
+   }
+    // закриваємо модальне вікно
+   document.querySelector('#closeDialog').onclick = function() {
+    dialog.close();
+    dialog.style.display = 'none';
+   }
+</script>
+{% endblock %}

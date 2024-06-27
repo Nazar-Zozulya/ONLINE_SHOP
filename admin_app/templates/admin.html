@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block title %}
+    Admin Page
+{% endblock %}
+
+{% block links %}
+<link rel="stylesheet" href="{{ url_for('shop.static', filename = 'shop.css') }}">
+<link rel="stylesheet" href="{{ url_for('admin.static', filename = 'css/admin.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- створюємо модальне вікно і кнопку відкриття його -->
+    <div class="create-product">
+        <button id="openCreateProduct"><p>ДОДАТИ ПРОДУКТ</p><img src="{{ url_for('admin.static', filename = 'img/add.png') }}" alt=""></button>
+    </div>
+    <div class="modal" id="createProduct">
+        <form action="" method="POST" class="forma" enctype= "multipart/form-data">
+            <input type = "file" class="input-image" name = "image" accept= "image/*">
+            <input type="text" placeholder = "name" name ="name">
+            <input type = "text" placeholder = "price" name = "price">
+            <input type = "text" placeholder = "sale" name = "sale">
+            <input type = "text" placeholder = "count" name = "count">
+            <input type = "text" placeholder = "privous price" name = "previous_price">
+            <button type = "submit" class="submit-create">Зберегти</button>
+        </form>
+    </div>
+    {% for product in products %}
+    <!-- виводемо всі продукт які є у базі данних -->
+    <div class="cart" id = "product-{{ product.id }}">
+
+        <img class="product-image" src="{{ url_for('shop.static', filename = 'image/' + product.name + '.png')}}">
+
+        
+            <button class = "change-image change-text" name = "change-image" id="{{ product.id }}"><img src="{{ url_for('admin.static', filename = 'img/edit-button.png') }}" alt="Error"></button>
+        <div class="product-text-div">
+            <div class="edit-div">
+                <p class="product-name">{{ product.name }}</p>
+
+                <button class="change-text" id="{{ product.id }}" type="text"><img src="{{ url_for('admin.static', filename = 'img/edit-button.png') }}" alt="123"></button>
+
+            </div>
+            <div class="price-div">
+                <p class="price-sale">{{ product.previous_price }}грн</p>
+                <button class="change-previous-price change-text" id="{{ product.id }}" type="number"><img src="{{ url_for('admin.static', filename = 'img/edit-button.png') }}" alt="123"></button>
+            </div>
+            <div class="price-div">
+                <p class="percent-sale">Знижка  {{ product.sale }}%</p>
+                <button class="change-sale change-text" id="{{ product.id }}" type="number"><img src="{{ url_for('admin.static', filename = 'img/edit-button.png') }}" alt="123"></button>
+            </div>
+                
+            <div class="price-div">
+                <p class="price">{{ product.price }}<p class="currency">грн</p></p>
+                <button class="change-price change-text" id="{{ product.id }}" type="number"><img src="{{ url_for('admin.static', filename = 'img/edit-button.png') }}" alt="123"></button>
+
+            </div>
+            <button class="buy-button" value="{{ product.id }}">КУПИТИ</button>
+            <!-- <p class="currency">ЄМНІСТЬ:</p> -->
+            <div class="nigg">
+                <div class="add-options">
+                    <button>256 ГБ</button>
+                    <button style="background-color: white;">512 ГБ</button>
+                    <button style="background-color: white;">1 ТБ</button>
+                </div>
+                <form action="" method="post">
+                    <button class="delete" name= "del" value= "{{ product.id }}"><img src="{{ url_for('admin.static', filename = 'img/delete.png') }}" alt=""><p>ВИДАЛИТИ ТОВАР</p></button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <script type="module" src="{{ url_for('admin.static', filename = 'js/main.js') }}"></script>
+{% endblock %}
+{% block modal %}
+<!-- створюємо модальні вікна на змінну картинки на текстових данних -->
+        <div class="modal modal-edit">
+            <form action="" method="POST" enctype="multipart/form-data">
+                <p>EDIT</p>
+                <input type="" id="" name="change-name" class="input-change">
+                <button type="submit" class="submit-change" name="submit-change">SAVE</button>
+            </form>
+        </div>
+
+        <div class="modal modal-edit-price">
+            <p>CHANGE PRICE</p>
+            <form action="" method="POST" enctype="multipart/form-data">
+                <input type="" id="" name="change-price" class="input-change-price form-input">
+                <button type="submit" class="submit-change form-button" name="submit-change">SAVE</button>
+            </form>
+        </div>
+    <div class="cover-modal">
+    </div>
+{% endblock %}

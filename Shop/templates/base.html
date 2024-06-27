@@ -1,0 +1,54 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %} {% endblock %}</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename = 'base.css') }}">
+        <!-- <script src="static/base.js" defer></script> -->
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+        {% block links %}
+        {% endblock %}
+    </head>
+    <body>
+        <header>
+            <div class="header-div">
+                {% block headerright %}
+                    <a href="/"><p class="header-p">HOME</p></a>
+                    <a href="/shop"><p class="header-p" >SHOP</p></a>
+                    <div>
+                        <a href="/cart"><p class="header-p">CART</p></a>
+                        {% if cookies != 0 %}
+                            <div class="count-cart">
+                                <p id="count">{{ cookies }}</p>
+                            </div>
+                        {% else %}
+
+                        {% endif %}
+                    </div>
+                    
+                    <a href=""><p class="header-p">CONTACTS</p></a>
+                    {% if is_admin %}
+                        <a href="/admin/"><p class="header-p">ADMIN</p></a>
+                    {% endif %} 
+                    {% if not is_authenticated %}
+                        <a href="/auth"><p class="header-p" >AUTHORIZATION</p></a>
+                        <a href="/registration"><p class="header-p" >REGISTRATION</p></a>
+                    {% else %}
+                        <p class="user-name">{{ is_name }}</p>
+                {% endif %}
+                {% endblock %}
+                
+            </div>
+        </header>
+        <main>
+            {% block content %}
+            {% endblock %}
+            <div class="cover-modal">
+            </div>
+        </main>
+            {% block script %}
+            {% endblock %}
+        {% block modal %}
+        {% endblock %}
+    </body>
+</html>

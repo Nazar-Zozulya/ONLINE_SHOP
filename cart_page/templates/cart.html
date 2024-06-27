@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block title %}
+    Кошик    
+{% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{{ url_for('cart.static', filename = 'cart.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="main">
+        <div class="products-in-cart">
+             <!-- виводемо всі подукти які є у cart -->
+                {% for product in products %}
+                        <div class="product-in-cart" id="product-{{ product.id }}">
+                            
+                            <img class="product-image" src="{{ url_for('shop.static', filename = 'image/' + product.name + '.png')}}">
+
+                            <div class="text">
+                                <h1 class="name">{{ product.name }}</h1>
+                                <div class="count-quantity">
+                                    <button class="minus" id="minus-{{ product.id }}"><p>-</p></button>
+                                    <div class="quantity"><p>{{ product.count }}</p></div>
+                                    <button class="plus" id="plus-{{ product.id }}"><p>+</p></button>
+                                </div>
+                                <p class="price">{{ product.price }}<p class="currency">грн</p></p>
+                            </div>
+                        </div>
+                {% endfor %}
+        </div>
+         <!-- робимо кнопки  купити де виводимо общю ціну -->
+            <div class="go-to-order">
+                <button class="go-to-order-button" id="goToOrder"><p>Перейти до оформлення</p></button>
+                <div class="all-products"><p class="all-products-text">4-и товари на суму</p><div class="pid"><p class="all-price">133 997<p class="all-currency">грн</p></p></div></div>
+                <div class="all-products"><p class="all-products-text">Знижка</p><div class="pid"><p class="all-price">133 997<p class="all-currency">грн</p></p></div></div>
+                <div class="all-products"><p class="all-products-text solid">Загальна сума</p><div class="pid"><p class="all-price solid">133 997<p class="all-currency solid">грн</p></p></div></div>
+            </div>
+    </div>
+    <script src="{{ url_for('cart.static', filename = 'plusMinus.js') }}"></script>
+{% endblock %}
+{% block modal %}
+<!-- робимо модальне вікно для заказу продуктів в cart -->
+    <div class="add-order modal">
+        <p class="p-order">ОФОРМЛЕННЯ ЗАМОВЛЕННЯ</p>
+        <form method="POST" enctype="multipart/form-data">
+            <div class="div-form">
+                <label for="input1">ІМ'Я</label>
+                <input type="text" name="name" id="input1" class="form-input">
+            </div>
+            <div class="div-form">
+                <label for="input1">ПРІЗВИЩЕ</label>
+                <input type="text" name="surname" id="input1" class="form-input">
+            </div>
+            <div class="div-form">
+                <label for="input1">ТЕЛЕФОН</label>
+                <input type="text" name="number" id="input1" class="form-input">
+            </div>
+            <div class="div-form">
+                <label for="input1">EMAIL</label>
+                <input type="text" name="email" id="input1" class="form-input">
+            </div>
+            <div class="div-form">
+                <label for="input1">МІСТО</label>
+                <input type="text" name="city" id="input1" class="form-input">
+            </div>
+            <div class="div-form">
+                <label for="input1">ВІДДІЛЕННЯ НОВОЇ ПОШТИ</label>
+                <input type="text" name="post_office" id="input1" class="form-input">
+            </div>
+            <div class="div-form">
+                <label for="input1">ДОДАТКОВІ ПОБАЖАННЯ</label>
+                <input type="textarea" name="additional_wish" id="input1" class="form-input">
+            </div>
+            <button type="submit" class="submit-change form-button" name="submit-change">SAVE</button>
+        </form>
+    </div>
+
+    <script>
+        let goToOrder = document.querySelector('#goToOrder');
+        let coverModal = document.querySelector('.cover-modal');
+        let modal = document.querySelector('.add-order');
+
+        goToOrder.addEventListener('click', () => {
+            coverModal.style.display = 'flex';
+            modal.style.display = 'flex';
+            
+        });
+    </script>
+{% endblock %}

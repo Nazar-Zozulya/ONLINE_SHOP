@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Сторінка покупок 
+{% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{{ url_for('shop.static', filename = 'shop.css') }}">
+{% endblock %}
+
+{% block content %}
+    {% for product in products %}
+        <div class="cart">
+            <img class="product-image" src="{{ url_for('shop.static', filename = 'image/' + product.name + '.png')}}">
+            <div class="product-text-div">
+                <p class="product-name">{{ product.name }}</p>
+                    <div class="price-div">
+                        <p class="price-sale">{{ product.previous_price }} грн</p>
+                    </div>
+                    <p class="percent-sale">Знижка  {{ product.sale }}%</p>
+                <div class="price-div">
+                    <p class="price">{{ product.price }}<p class="currency">грн</p></p>
+                </div>
+                <button class="buy-button" value="{{ product.id }}">КУПИТИ</button>
+                <p class="currency">ЄМНІСТЬ:</p>
+                <div class="nigg">
+                    <div class="add-options">
+                        <button>256 ГБ</button>
+                        <button style="background-color: white;">512 ГБ</button>
+                        <button style="background-color: white;">1 ТБ</button>
+                    </div>
+                    <div class="in-stock">
+                        <img class="in-stock-img"src="{{ url_for('shop.static', filename = 'image/accept button.png') }}" alt="Image not found">
+                        <p>ТОВАР В НАЯВНОСТІ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <script src="{{ url_for('shop.static', filename = 'cookie.js') }}"></script>
+{% endblock %}

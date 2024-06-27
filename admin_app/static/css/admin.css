@@ -1,0 +1,147 @@
+.edit-div{
+    width: auto;    
+    height: auto;
+    display: flex;
+    justify-content: start;
+    gap: 2%;
+    align-items: center;
+    flex-direction: row;
+}
+
+.edit-div button{
+    border: none;
+    background-color: none;
+}
+
+.edit-div button img{
+    height: 30px;
+}
+
+dialog{
+    top: 0;
+    left: 0;
+    position: fixed;
+    background-color: none;
+    background: none;
+}
+
+
+form input{
+    width: 450px;
+    height: 74px;
+    border-radius: 15px;
+    border: 2px solid black;
+
+}
+
+.change-text{
+    border: none;
+    background-color: none;
+    background: none;
+    text-decoration: underline;
+    font-size: 25px;
+}
+
+.change-text img{
+    width: 30px;
+}
+
+.change-image img{
+    width: 30px;
+}
+
+.change-image{
+    border: none;
+    background-color: none;
+    background: none;
+    text-decoration: underline;
+    font-size: 25px;
+    width: auto;
+    height: auto;
+    justify-content: start;
+
+}
+
+.delete{
+    background-color: none;
+    background: none;
+    border: none;
+    display: flex;
+    flex-direction: row;
+}
+
+.delete img{
+    height: 37px;
+}
+
+.delete p{
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    width: 100%;
+}
+
+.create-product{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.create-product button{
+    background-color: none;
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.create-product img{
+    width: 37px;
+}
+
+.create-product p{
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    width: 100%;
+}
+
+.submit-change{
+    border: none;
+    background-color: none;
+    background: none;
+    border-bottom: 1px solid black;
+}
+.input-image#upload{
+    height: 90%;
+    width: 50%;
+    background-color: #D1D8DB;
+    border: 1px solid black;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.submit-create{
+    border: none;
+    background-color: none;
+    background: none;
+    border-bottom: 1px solid black;
+}
+
+.product-image{
+    width: 250px;
+}
+
+.modal form{
+    padding: 5%;
+    justify-content: space-around;
+}
+
+.modal{
+    margin-top: 10%;
+}

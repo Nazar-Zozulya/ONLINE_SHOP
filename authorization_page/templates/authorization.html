@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}
+    Сторінка авторизації
+{% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{{ url_for('auth.static', filename = 'auth.css') }}">
+{% endblock %}
+{% block header %}
+    <a href="/registration"><p class="header-p" >REGISTRATION</p></a>
+{% endblock %}
+
+{% block content %}
+<!-- створюємо поля  для раєстрації -->
+    <div class="main">
+        <form action="" method="post">
+            <div class="field">
+                <p>Login or email</p>
+                <input type="text" name="name">
+            </div>
+            <div class="field">
+                <p>Password</p>
+                <input type="password" name="password">
+            </div>
+            <button id="openDialog">SEND</button>
+        </form>
+        <!-- створємо модальне вікно -->
+        <dialog style="display: none;">
+            <div class="cover-modal">
+            </div>
+            <div class="modal">
+                <p>you are not registered</p>
+                <p>{{nice}}</p>
+                <a href="/reg"><p class="header-p" id="openDialog" > registration</p></a>
+            </div>
+        </dialog>
+    </div>
+{% endblock %}
+
+{% block script %}
+<script>
+    // утромуємо модальне вікно
+    var dialog = document.querySelector('dialog');
+    // відкриважмо модальне вікно
+   document.querySelector('#openDialog').onclick = function() {
+    dialog.show(); 
+    dialog.style.display = 'flex';
+   }
+    // закриваємо модальне вікно
+   document.querySelector('#closeDialog').onclick = function() {
+    dialog.close();
+    dialog.style.display = 'none';
+   }
+</script>
+{% endblock %}
